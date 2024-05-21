@@ -1,0 +1,95 @@
+/* LOGIN PAGE */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10rem auto;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  width: 30%;
+  height: 2rem;
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  box-shadow: 0 0 2px 0px black inset;
+}
+
+.message {
+  color: red;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.button {
+  border-radius: 3px;
+  width: 30%;
+  height: 1.8rem;
+  background-color: azure;
+  color: rgb(0, 128, 187);
+  transition: 0.1s;
+  box-shadow: 0 0 2px 0px rgb(0, 128, 187) inset;
+}
+
+.button:hover {
+  background-color: rgb(0, 128, 187);
+  color: azure;
+}
+
+/* DATA GRID */
+
+.grid_container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.grid {
+  height: 80vh;
+  resize: both;
+}
+
+.input_container {
+  height: 40px;
+  margin: 0 0.5rem;
+}
+
+.input_container input {
+  border: 1px solid #000;
+  height: 100%;
+  margin: 0.5rem 0.25rem;
+  padding-left: 1rem;
+}
+
+.input_container label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0.5rem 0.25rem;
+}
+
+.input_container button {
+  border: 1px solid #000;
+  color: rgb(0, 128, 187);
+  transition: 0.1s;
+  padding: 0.2rem 0.5rem;
+  background-color: royalblue;
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  height: 100%;
+  margin-left: 0.25rem;
+}
+
+.input_container button:hover {
+  background-color: rgb(0, 128, 187);
+  color: white;
+}
+
+/* CATEGORIES */
+
+.categories_container {
+  height: 47px;
+}
