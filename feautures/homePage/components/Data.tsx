@@ -27,6 +27,7 @@ const { grid, input_container } = styles;
 
 const Data = () => {
   const dispatch = useDispatch();
+
   const { rowData } = useSelector((state: RootState) => state.app.data);
   const { amount, description, name, price, category } = useSelector(
     (state: RootState) => state.app.newItem

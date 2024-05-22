@@ -20,8 +20,6 @@ const Categories = () => {
         const res = await axios.get(
           `/api/categories?token=${localStorage.getItem('token')}`
         );
-        console.log(res.data);
-
         dispatch(setCategories(res.data));
         dispatch(setToggle(res.data.length ? res.data[0].category : ''));
         dispatch(selectCategory(res.data.length ? res.data[0].category : ''));

@@ -112,6 +112,9 @@ export const appSlice = createSlice({
     selectCategory: (state, action) => {
       state.categories.selected = action.payload;
     },
+    setState: (state, action) => {
+      state = action.payload;
+    },
   },
 });
 
@@ -134,5 +137,6 @@ export const {
   selectCategory,
   setCategories,
   setNewItemCategory,
+  setState,
 } = appSlice.actions;
 export default appSlice.reducer;
