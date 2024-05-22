@@ -17,6 +17,7 @@ const { form, inputs, button, message } = styles;
 const Login = () => {
   const app = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
+  const { language } = app;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -68,7 +69,7 @@ const Login = () => {
         value={app.form.username}
         onChange={(e) => dispatch(setUsername(e.target.value))}
         className={inputs}
-        placeholder="Username..."
+        placeholder={language === 'en' ? 'Username...' : 'Όνομα χρήστη...'}
         type="text"
         required
       />
@@ -76,9 +77,9 @@ const Login = () => {
         value={app.form.password}
         onChange={(e) => dispatch(setPassword(e.target.value))}
         className={inputs}
-        type="password"
+        type={'password'}
         required
-        placeholder="Password..."
+        placeholder={language === 'en' ? 'Password...' : 'Κωδικός πρόσβασης...'}
       />
       <label style={{ width: '30%' }} htmlFor="save">
         <input
@@ -95,10 +96,12 @@ const Login = () => {
           name="save"
           id="save"
         />
-        <span style={{ marginLeft: '1rem' }}>Remember me</span>
+        <span style={{ marginLeft: '1rem' }}>
+          {language === 'en' ? 'Remember me' : 'Αποθήκευση'}
+        </span>
       </label>
       <button disabled={app.form.loading} className={button}>
-        {!app.form.loading ? 'Login' : 'Loading...'}
+        {language === 'en' ? 'Login' : 'Σύνδεση'}
       </button>
       <button
         style={{ width: '8%', height: '1.6rem' }}

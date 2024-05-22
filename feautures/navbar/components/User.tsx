@@ -7,7 +7,9 @@ import { logout, setShowDelete } from '@/redux/appSlice';
 const { userContainer, logoutButton, split } = styles;
 
 const User = () => {
-  const { user, showDelete } = useSelector((state: RootState) => state.app);
+  const { user, showDelete, language } = useSelector(
+    (state: RootState) => state.app
+  );
   const dispatch = useDispatch();
   return (
     <div className={`${userContainer} ${user && split}`}>
@@ -22,7 +24,7 @@ const User = () => {
               id="delete"
               type="checkbox"
             />
-            {`Delete Option`}
+            {language === 'en' ? `Delete Items` : 'Διαγραφή αντικειμένων'}
           </label>
           <button
             className={logoutButton}
@@ -31,7 +33,7 @@ const User = () => {
               localStorage.removeItem('token');
             }}
           >
-            Logout
+            {language === 'en' ? 'Logout' : 'Αποσύνδεση'}
           </button>
         </>
       )}

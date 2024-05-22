@@ -32,7 +32,7 @@ const Data = () => {
   const { amount, description, name, price, category } = useSelector(
     (state: RootState) => state.app.newItem
   );
-  const { showDelete, categories, newItem, user } = useSelector(
+  const { showDelete, categories, newItem, user, language } = useSelector(
     (state: RootState) => state.app
   );
 
@@ -53,10 +53,10 @@ const Data = () => {
   const keys = (rowData: any) => {
     if (!rowData.length)
       return [
-        { field: 'Name' },
-        { field: 'Price' },
-        { field: 'Quantity' },
-        { field: 'Description' },
+        { field: language === 'en' ? 'Name' : 'Όνομα προϊόντος' },
+        { field: language === 'en' ? 'Price' : 'Τιμή' },
+        { field: language === 'en' ? 'Quantity' : 'Ποσότητα' },
+        { field: language === 'en' ? 'Description' : 'Περιγραφή' },
       ];
     return Object.keys(rowData[0])
       .filter((item) => item !== '__v')
@@ -66,7 +66,22 @@ const Data = () => {
           headerValueGetter: (params) => {
             // @ts-ignore
             const title = params.colDef.field;
-            return title === '_id' ? 'Delete' : title;
+            switch (key) {
+              case (key = 'Name'):
+                return language === 'en' ? key : 'Όνομα';
+              case (key = 'Price'):
+                return language === 'en' ? key : 'Τιμή';
+              case (key = 'Quantity'):
+                return language === 'en' ? key : 'Ποσότητα';
+              case (key = 'Description'):
+                return language === 'en' ? key : 'Περιγραφή';
+              default:
+                return title === '_id'
+                  ? language === 'en'
+                    ? 'Delete'
+                    : 'Διαγραφή'
+                  : title;
+            }
           },
           cellRenderer: (params: any) => {
             const title = params.colDef.field;
@@ -80,7 +95,7 @@ const Data = () => {
                 }}
                 onClick={() => deleteItem(params.value)}
               >
-                Delete
+                {language === 'en' ? 'Delete' : 'Διαγραφή'}
               </button>
             ) : (
               params.value
@@ -155,7 +170,7 @@ const Data = () => {
           }}
           columnDefs={[
             {
-              headerName: 'Row',
+              headerName: language === 'en' ? 'Row' : 'Αριθμός',
               valueGetter: 'node.rowIndex + 1',
             },
 
@@ -172,14 +187,16 @@ const Data = () => {
           }}
           className={input_container}
         >
-          <label>Add new item:</label>
+          <label>
+            {language === 'en' ? 'Add new item:' : 'Νέο αντικείμενο:'}
+          </label>
           <input
             required
             onChange={(e) => {
               dispatch(setNewItemCategory(e.target.value));
             }}
             value={category}
-            placeholder="Category..."
+            placeholder={language === 'en' ? 'Category...' : 'Κατηγορία...'}
             type="text"
           />
           <input
@@ -188,7 +205,7 @@ const Data = () => {
               dispatch(setNewItemName(e.target.value));
             }}
             value={name}
-            placeholder="Name..."
+            placeholder={language === 'en' ? 'Name...' : 'Όνομα...'}
             type="text"
           />
           <input
@@ -199,7 +216,7 @@ const Data = () => {
               dispatch(setNewItemPrice(value));
             }}
             value={price}
-            placeholder="Price..."
+            placeholder={language === 'en' ? 'Price...' : 'Τιμή...'}
             type="text"
           />
           <input
@@ -210,7 +227,7 @@ const Data = () => {
               dispatch(setNewItemAmount(e.target.value));
             }}
             value={amount}
-            placeholder="Quantity..."
+            placeholder={language === 'en' ? 'Quantity...' : 'Ποσότητα...'}
             type="text"
           />
           <input
@@ -218,11 +235,11 @@ const Data = () => {
               dispatch(setNewItemDescription(e.target.value));
             }}
             value={description}
-            placeholder="Description..."
+            placeholder={language === 'en' ? 'Description...' : 'Περιγραφή...'}
             type="text"
           />
 
-          <button>ADD</button>
+          <button>{language === 'en' ? 'ADD' : 'Προσθήκη'}</button>
         </form>
       </div>
     </div>

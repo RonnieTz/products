@@ -35,6 +35,7 @@ const initialState: {
     list: { category: string; _id: string }[];
     selected: string;
   };
+  language: 'en' | 'gr';
 } = {
   user: null,
   form: { username: '', password: '', loading: false, error: '', save: false },
@@ -49,6 +50,7 @@ const initialState: {
     list: [],
     selected: '',
   },
+  language: 'en',
 };
 
 export const appSlice = createSlice({
@@ -115,6 +117,9 @@ export const appSlice = createSlice({
     setState: (state, action) => {
       state = action.payload;
     },
+    changeLanguage: (state, action) => {
+      state.language = action.payload;
+    },
   },
 });
 
@@ -138,5 +143,6 @@ export const {
   setCategories,
   setNewItemCategory,
   setState,
+  changeLanguage,
 } = appSlice.actions;
 export default appSlice.reducer;
