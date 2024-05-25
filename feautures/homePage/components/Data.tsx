@@ -106,7 +106,7 @@ const Data = () => {
             key === 'category' ||
             key === 'user',
           pinned: key === '_id' ? 'right' : undefined,
-          editable: true,
+          editable: key !== '_id' ? true : false,
         };
       });
   };
@@ -172,6 +172,8 @@ const Data = () => {
             {
               headerName: language === 'en' ? 'Row' : 'Αριθμός',
               valueGetter: 'node.rowIndex + 1',
+              lockPosition: true,
+              initialWidth: 80,
             },
 
             ...(keys(rowData) as any),
